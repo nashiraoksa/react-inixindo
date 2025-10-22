@@ -1,17 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import Hero from "../components/Hero";
+import ContentGrid from "../components/ContentGrid";
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-  const aksiLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-    // window.location.href = "/";
-  };
-
   return (
     <div>
-      <h2>Halaman Dashboard</h2>
-      <button onClick={aksiLogout}>Logout</button>
+      <Hero />
+      <ContentGrid />
     </div>
   );
 }
