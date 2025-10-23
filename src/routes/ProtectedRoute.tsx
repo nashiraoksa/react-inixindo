@@ -1,11 +1,19 @@
-import type { JSX } from "react";
-import { Navigate } from "react-router-dom";
-
+import React from "react";
+import { useAuth } from "../context/AuthContext";
+import { Navigate, useLocation } from "react-router-dom";
 interface ProtectedRouteProps {
-  children: JSX.Element;
+  children: React.ReactElement;
 }
 
-export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const isAuth = localStorage.getItem("token");
-  return isAuth ? children : <Navigate to="/login" />;
-}
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+  const { token } = useAuth();
+  const location = useLocation();
+
+  if (!token) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
+};
+
+export default ProtectedRoute;
