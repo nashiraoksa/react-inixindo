@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import ThemeButton from "./ThemeButton";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -56,6 +57,9 @@ export default function Navbar() {
             </li>
           </>
         )}
+        <li>
+          <ThemeButton />
+        </li>
       </ul>
       {/* <button onClick={handleLogout}>Logout</button> */}
     </nav>
